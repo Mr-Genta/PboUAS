@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author user
+ * @author User
  */
 public class FromMahasiswa extends javax.swing.JFrame {
     private Connection koneksi;
