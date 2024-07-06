@@ -315,6 +315,49 @@ private void koneksi_database() {
         JOptionPane.showMessageDialog(null,e);
     }
 }
+private void isi_table() {
+    DefaultTableModel tbl=new DefaultTableModel();
+    
+    tbl.addColumn("ID");
+    tbl.addColumn("Nama");
+    tbl.addColumn("Jenjang");
+    tbl.addColumn("Jurusan");
+    tbl.addColumn("No. Telepon");
+    tabel.setModel(tbl);
+    try {
+        hasil=pernyataan.executeQuery("Select * from mahasiswa.tabelmahasiswa");
+        while(hasil.next()){
+            tbl.addRow(new Object[] {
+                hasil.getString("Nim"),
+                hasil.getString("Nama"),
+                hasil.getString("Jenjang"),
+                hasil.getString("Jurusan"),
+                hasil.getString("Telepon"),
+            });
+            tabel.setModel(tbl);
+        }
+    } catch (Exception e) {}
+}
+/**************************************************************/
+
+private void update(){
+    try{
+        pernyataan.executeUpdate("update tabelmahasiswa set "
+            +"nama='"+TxtNama.getText()+"',"
+            +"telepon='"+TxtTelp.getText()+"',"
+            +"jenjang='"+CboJenjang.getSelectedItem()+"',"
+            +"jurusan='"+CboJurusan.getSelectedItem()+"'"
+            +"where "
+            +"nim='"+TxtNim.getText()+"'"
+        );
+        JOptionPane.showMessageDialog (null, "Berhasil diupdate");
+    }
+    catch (Exception e){
+        JOptionPane.showMessageDialog (null, "Keterangan Error :"+e);
+    }
+    isi_table();
+}
+
 
 
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
