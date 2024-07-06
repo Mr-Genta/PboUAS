@@ -283,11 +283,40 @@ private void bisa_isi () {
 
 
 private void tidak_bisa_isi (){
-    TxtNama.setEnabled(true);
+    TxtNama.setEnabled(false);
     TxtTelp.setEnabled(false);
     CboJenjang.setEnabled(false);
     CboJurusan.setEnabled(false);
 }
+
+private void tombol_mati(){
+    //TblBaru.setVisible(false);
+    TblSimpan.setText("Simpan");
+    TblSimpan.setEnabled(false);
+    TblHapus.setEnabled(false);
+    TblEdit.setEnabled(false);
+}
+
+private void tombol_hidup(){
+    TblSimpan.setText("Simpan");
+    TblSimpan.setText("Simpan");
+    TblSimpan.setEnabled(false);
+    TblEdit.setEnabled(true);
+    TblHapus.setEnabled(true);
+    
+}
+private void koneksi_database() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        koneksi=DriverManager.getConnection("jdbc:mysql://localhost/mahasiswa","root","");
+        pernyataan=koneksi.createStatement();
+    } 
+	catch (Exception e) {
+        JOptionPane.showMessageDialog(null,e);
+    }
+}
+
+
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
