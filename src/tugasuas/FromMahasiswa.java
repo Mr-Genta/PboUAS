@@ -358,7 +358,22 @@ private void update(){
     isi_table();
 }
 
-
+private void simpan() {
+    try {
+        pernyataan.executeUpdate("insert into tabelmahasiswa values"
+                               + "("+" "+TxtID.getText()+"',"
+                               + ""+""+TxtNama.getText()+"',"
+                               + ""+""+CboJenjang.getSelectedItem()+","
+                               + ""+""+CboJurusan.getSelectedItem()+"',"
+                               + ""+" "+TxtTelp.getText()+"')");
+    } 
+    catch (Exception e) {
+        JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
+    }
+    isi_table();
+    tidak_bisa_isi();
+    TblSimpan.setEnabled(false);
+}
 
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
