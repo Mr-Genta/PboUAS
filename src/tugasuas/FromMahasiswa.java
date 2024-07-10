@@ -4,28 +4,12 @@
  */
 package tugasuas;
 
-import java.sql.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
-import java.sql.DriverManager;
-import java.util.logging.Level;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 
 /**
  *
- * @author User
+ * @author penguna
  */
 public class FromMahasiswa extends javax.swing.JFrame {
-    private Connection koneksi;
-    private Statement pernyataan;
-    private ResultSet Hasil;
-    /**
-     * Creates new form FromMahasiswa
-     */
     public FromMahasiswa() {
         initComponents();
     }
@@ -265,6 +249,7 @@ public class FromMahasiswa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 private void kosong() {
     TxtNama.setText("");
     TxtID.setText("");
@@ -290,23 +275,6 @@ private void tidak_bisa_isi (){
 //---------------------------isi-dibawah-ini------------------------------------
 
 
-//----------------------------isi-diatas-ini------------------------------------
-private void simpan() {
-    try {
-        pernyataan.executeUpdate("insert into tabelmahasiswa values"
-                               + "("+" "+TxtID.getText()+"',"
-                               + ""+""+TxtNama.getText()+"',"
-                               + ""+""+CboJenjang.getSelectedItem()+","
-                               + ""+""+CboJurusan.getSelectedItem()+"',"
-                               + ""+" "+TxtTelp.getText()+"')");
-    } 
-    catch (Exception e) {
-        JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
-    }
-    isi_table();
-    tidak_bisa_isi();
-    TblSimpan.setEnabled(false);
-}
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
