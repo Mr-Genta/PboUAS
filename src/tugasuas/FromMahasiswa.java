@@ -337,6 +337,25 @@ private void isi_table() {
     } catch (Exception e) {}
 }
 
+private void update(){
+    try{
+        pernyataan.executeUpdate("update tabelmahasiswa set "
+            +"nama='"+TxtNama.getText()+"',"
+            +"telepon='"+TxtTelp.getText()+"',"
+            +"jenjang='"+CboJenjang.getSelectedItem()+"',"
+            +"jurusan='"+CboJurusan.getSelectedItem()+"'"
+            +"where "
+            +"nim='"+TxtNim.getText()+"'"
+        );
+        JOptionPane.showMessageDialog (null, "Berhasil diupdate");
+    }
+    catch (Exception e){
+        JOptionPane.showMessageDialog (null, "Keterangan Error :"+e);
+    }
+    isi_table();
+}
+
+
 =======
 private void tidak_bisa_isi (){
     TxtNama.setEnabled(false);
