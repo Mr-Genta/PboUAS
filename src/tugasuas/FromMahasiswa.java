@@ -273,6 +273,14 @@ private void kosong() {
     TxtTelp.setText("");
 }
 
+private void bisa_isi () {      
+    TxtID.setEnabled(true);
+    TxtNama.setEnabled(true);
+    TxtTelp.setEnabled(true);
+    CboJenjang.setEnabled(true);
+    CboJurusan.setEnabled(true);
+}
+
 
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
