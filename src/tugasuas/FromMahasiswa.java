@@ -357,12 +357,7 @@ private void update(){
 
 
 =======
-private void tidak_bisa_isi (){
-    TxtNama.setEnabled(false);
-    TxtTelp.setEnabled(false);
-    CboJenjang.setEnabled(false);
-    CboJurusan.setEnabled(false);
-}
+
 //---------------------------isi-dibawah-ini------------------------------------
 
 
