@@ -3,13 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package tugasuas;
-
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.DriverManager;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 /**
  *
  * @author User
  */
 public class FromMahasiswa extends javax.swing.JFrame {
+    
+    private Connection koneksi;
+    private Statement pernyataan;
+    private ResultSet Hasil;
     public FromMahasiswa() {
         initComponents();
     }
@@ -250,7 +263,29 @@ public class FromMahasiswa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
+   private void kosong() {
+    TxtNama.setText("");
+    TxtID.setText("");
+    CboJenjang.setSelectedItem(null);
+    CboJurusan.setSelectedItem(null);
+    TxtTelp.setText("");
+}
+
+private void bisa_isi () {      
+    TxtID.setEnabled(true);
+    TxtNama.setEnabled(true);
+    TxtTelp.setEnabled(true);
+    CboJenjang.setEnabled(true);
+    CboJurusan.setEnabled(true);
+}
+
+
+private void tidak_bisa_isi (){
+    TxtNama.setEnabled(false);
+    TxtTelp.setEnabled(false);
+    CboJenjang.setEnabled(false);
+    CboJurusan.setEnabled(false);
+}
 
 =======
 private void tidak_bisa_isi (){
