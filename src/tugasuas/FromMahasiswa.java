@@ -281,82 +281,33 @@ private void bisa_isi () {
     CboJurusan.setEnabled(true);
 }
 
-
 private void tidak_bisa_isi (){
     TxtNama.setEnabled(false);
     TxtTelp.setEnabled(false);
     CboJenjang.setEnabled(false);
     CboJurusan.setEnabled(false);
 }
+//---------------------------isi-dibawah-ini------------------------------------
 
-private void tombol_mati(){
-    //TblBaru.setVisible(false);
-    TblSimpan.setText("Simpan");
-    TblSimpan.setEnabled(false);
-    TblHapus.setEnabled(false);
-    TblEdit.setEnabled(false);
-}
 
-private void tombol_hidup(){
-    TblSimpan.setText("Simpan");
-    TblSimpan.setText("Simpan");
-    TblSimpan.setEnabled(false);
-    TblEdit.setEnabled(true);
-    TblHapus.setEnabled(true);
-    
-}
-private void koneksi_database() {
+//----------------------------isi-diatas-ini------------------------------------
+private void simpan() {
     try {
-        Class.forName("com.mysql.jdbc.Driver");
-        koneksi=DriverManager.getConnection("jdbc:mysql://localhost/mahasiswa","root","");
-        pernyataan=koneksi.createStatement();
+        pernyataan.executeUpdate("insert into tabelmahasiswa values"
+                               + "("+" "+TxtID.getText()+"',"
+                               + ""+""+TxtNama.getText()+"',"
+                               + ""+""+CboJenjang.getSelectedItem()+","
+                               + ""+""+CboJurusan.getSelectedItem()+"',"
+                               + ""+" "+TxtTelp.getText()+"')");
     } 
-	catch (Exception e) {
-        JOptionPane.showMessageDialog(null,e);
-    }
-}
-private void isi_table() {
-    DefaultTableModel tbl=new DefaultTableModel();
-    
-    tbl.addColumn("ID");
-    tbl.addColumn("Nama");
-    tbl.addColumn("Jenjang");
-    tbl.addColumn("Jurusan");
-    tbl.addColumn("No. Telepon");
-    tabel.setModel(tbl);
-    try {
-        hasil=pernyataan.executeQuery("Select * from mahasiswa.tabelmahasiswa");
-        while(hasil.next()){
-            tbl.addRow(new Object[] {
-                hasil.getString("Nim"),
-                hasil.getString("Nama"),
-                hasil.getString("Jenjang"),
-                hasil.getString("Jurusan"),
-                hasil.getString("Telepon"),
-            });
-            tabel.setModel(tbl);
-        }
-    } catch (Exception e) {}
-}
-/**************************************************************/
-
-private void update(){
-    try{
-        pernyataan.executeUpdate("update tabelmahasiswa set "
-            +"nama='"+TxtNama.getText()+"',"
-            +"telepon='"+TxtTelp.getText()+"',"
-            +"jenjang='"+CboJenjang.getSelectedItem()+"',"
-            +"jurusan='"+CboJurusan.getSelectedItem()+"'"
-            +"where "
-            +"nim='"+TxtNim.getText()+"'"
-        );
-        JOptionPane.showMessageDialog (null, "Berhasil diupdate");
-    }
-    catch (Exception e){
-        JOptionPane.showMessageDialog (null, "Keterangan Error :"+e);
+    catch (Exception e) {
+        JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
     }
     isi_table();
+    tidak_bisa_isi();
+    TblSimpan.setEnabled(false);
 }
+<<<<<<< HEAD
 
 private void simpan() {
     try {
@@ -375,6 +326,8 @@ private void simpan() {
     TblSimpan.setEnabled(false);
 }
 
+=======
+>>>>>>> 049473a2b3e9158bf31dd75d4c7e4e1f61980aa3
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
