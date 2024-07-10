@@ -250,8 +250,57 @@ public class FromMahasiswa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
+
+=======
+private void tidak_bisa_isi (){
+    TxtNama.setEnabled(false);
+    TxtTelp.setEnabled(false);
+    CboJenjang.setEnabled(false);
+    CboJurusan.setEnabled(false);
+}
+//---------------------------isi-dibawah-ini------------------------------------
 
 
+//----------------------------isi-diatas-ini------------------------------------
+private void simpan() {
+    try {
+        pernyataan.executeUpdate("insert into tabelmahasiswa values"
+                               + "("+" "+TxtID.getText()+"',"
+                               + ""+""+TxtNama.getText()+"',"
+                               + ""+""+CboJenjang.getSelectedItem()+","
+                               + ""+""+CboJurusan.getSelectedItem()+"',"
+                               + ""+" "+TxtTelp.getText()+"')");
+    } 
+    catch (Exception e) {
+        JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
+    }
+    isi_table();
+    tidak_bisa_isi();
+    TblSimpan.setEnabled(false);
+}
+<<<<<<< HEAD
+
+private void simpan() {
+    try {
+        pernyataan.executeUpdate("insert into tabelmahasiswa values"
+                               + "("+" "+TxtID.getText()+"',"
+                               + ""+""+TxtNama.getText()+"',"
+                               + ""+""+CboJenjang.getSelectedItem()+","
+                               + ""+""+CboJurusan.getSelectedItem()+"',"
+                               + ""+" "+TxtTelp.getText()+"')");
+    } 
+    catch (Exception e) {
+        JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
+    }
+    isi_table();
+    tidak_bisa_isi();
+    TblSimpan.setEnabled(false);
+}
+>>>>>>> genta
+
+=======
+>>>>>>> 049473a2b3e9158bf31dd75d4c7e4e1f61980aa3
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
