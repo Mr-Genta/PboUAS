@@ -287,6 +287,56 @@ private void tidak_bisa_isi (){
     CboJurusan.setEnabled(false);
 }
 
+private void tombol_mati(){
+    //TblBaru.setVisible(false);
+    TblSimpan.setText("Simpan");
+    TblSimpan.setEnabled(false);
+    TblHapus.setEnabled(false);
+    TblEdit.setEnabled(false);
+}
+
+private void tombol_hidup(){
+    TblSimpan.setText("Simpan");
+    TblSimpan.setText("Simpan");
+    TblSimpan.setEnabled(false);
+    TblEdit.setEnabled(true);
+    TblHapus.setEnabled(true);
+    
+}
+private void koneksi_database() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        koneksi=DriverManager.getConnection("jdbc:mysql://localhost/mahasiswa","root","");
+        pernyataan=koneksi.createStatement();
+    } 
+	catch (Exception e) {
+        JOptionPane.showMessageDialog(null,e);
+    }
+}
+private void isi_table() {
+    DefaultTableModel tbl=new DefaultTableModel();
+    
+    tbl.addColumn("ID");
+    tbl.addColumn("Nama");
+    tbl.addColumn("Jenjang");
+    tbl.addColumn("Jurusan");
+    tbl.addColumn("No. Telepon");
+    tabel.setModel(tbl);
+    try {
+        hasil=pernyataan.executeQuery("Select * from mahasiswa.tabelmahasiswa");
+        while(hasil.next()){
+            tbl.addRow(new Object[] {
+                hasil.getString("Nim"),
+                hasil.getString("Nama"),
+                hasil.getString("Jenjang"),
+                hasil.getString("Jurusan"),
+                hasil.getString("Telepon"),
+            });
+            tabel.setModel(tbl);
+        }
+    } catch (Exception e) {}
+}
+
 =======
 private void tidak_bisa_isi (){
     TxtNama.setEnabled(false);
