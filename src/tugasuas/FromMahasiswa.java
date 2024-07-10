@@ -265,7 +265,13 @@ public class FromMahasiswa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+private void kosong() {
+    TxtNama.setText("");
+    TxtID.setText("");
+    CboJenjang.setSelectedItem(null);
+    CboJurusan.setSelectedItem(null);
+    TxtTelp.setText("");
+}
 
 
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
