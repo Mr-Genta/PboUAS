@@ -281,6 +281,13 @@ private void bisa_isi () {
     CboJurusan.setEnabled(true);
 }
 
+private void tidak_bisa_isi (){
+    TxtNama.setEnabled(false);
+    TxtTelp.setEnabled(false);
+    CboJenjang.setEnabled(false);
+    CboJurusan.setEnabled(false);
+}
+
 
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
