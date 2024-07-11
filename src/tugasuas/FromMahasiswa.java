@@ -405,6 +405,24 @@ private void TblKeluarActionPerformed (java.awt.event.ActionEvent evt) {
 	 System.exit(0);
 }
 
+private void TblBatalActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	JOptionPane.showMessageDialog (null,"Batal");	
+	kosong();
+	tidak_bisa_isi();
+	tombol_mati();
+  }
+
+
+private void TblEditActionPerformed (java.awt.event.ActionEvent evt) {
+//TODO add your handling code here:
+bisa_isi();
+tombol_mati();
+TxtNama.requestFocus();
+TblSimpan.setText("Update");
+TblSimpan.setEnabled(true);
+TxtNim.setEnabled(false);
+}
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
