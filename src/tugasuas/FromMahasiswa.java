@@ -374,7 +374,18 @@ private void simpan() {
     tidak_bisa_isi();
     TblSimpan.setEnabled(false);
 }
-
+private void hapus () {
+	try {
+		pernyataan.executeUpdate(“delete from tabelmahasiswa where ”
+				       +”nim=’“+TxtNim.getText () +”’”) ;
+		JOptionPane.showMessageDialog (null, "Berhasil dihapus") ;
+		kosong();
+		isi_table() ;
+		}
+	catch (Exception e) {
+		JOptionPane.showMessageDialog (null, "Keterangan Error :"+e) ;
+		}
+}
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
