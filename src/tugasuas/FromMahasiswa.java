@@ -423,6 +423,32 @@ TblSimpan.setText("Update");
 TblSimpan.setEnabled(true);
 TxtNim.setEnabled(false);
 }
+
+private void TblHapusActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	int dialogButton = JOptionPane.YES_NO_OPTION;
+	int dialogButton = JOptionPane.showConfirmDialog (this, "Data akan dihapus?",
+		"Hapus Data",dialogButton);
+	if(dialogResult==0)
+	  hapus();
+	else
+	  JOptionPane.showMessageDialog (null, "Batal menghapus");
+}
+
+
+private void TblBaruActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	kosong();
+	bisa_isi();
+	TblHapus.setEnabled(false);
+	TxtNim.requestFocus();
+	if(TxtNim.getText()=="")
+	  TblSimpan.setEnabled(false);
+	else{
+	  TblSimpan.setEnabled(true);
+	}
+}
+
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
