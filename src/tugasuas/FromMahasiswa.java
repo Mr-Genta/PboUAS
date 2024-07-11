@@ -386,6 +386,25 @@ private void hapus () {
 		JOptionPane.showMessageDialog (null, "Keterangan Error :"+e) ;
 		}
 }
+
+private void TblSimpanActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	if(this.TblSimpan.getText()=="Simpan")
+		simpan();
+	else{
+		update();
+		tidak_bisa_isi();
+		tombol_hidup();
+		TxtNim.setEnabled(true);
+		}
+}
+
+
+private void TblKeluarActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	 System.exit(0);
+}
+
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
