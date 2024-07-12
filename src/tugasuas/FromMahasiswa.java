@@ -22,9 +22,15 @@ public class FromMahasiswa extends javax.swing.JFrame {
     
     private Connection koneksi;
     private Statement pernyataan;
-    private ResultSet Hasil;
+    private ResultSet hasil;
     public FromMahasiswa() {
         initComponents();
+        
+        koneksi_database();
+        isi_table();
+        kosong();
+        tidak_bisa_isi();
+        tombol_mati();
     }
 
     /**
@@ -99,6 +105,11 @@ public class FromMahasiswa extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabel);
 
         jLabel8.setText("Tabel Mahasiswa");
@@ -140,6 +151,12 @@ public class FromMahasiswa extends javax.swing.JFrame {
         jLabel5.setText("Jurusan");
 
         jLabel6.setText("Telepon");
+
+        TxtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtIDActionPerformed(evt);
+            }
+        });
 
         CboJenjang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S1", "D3", "D4" }));
 
@@ -204,14 +221,39 @@ public class FromMahasiswa extends javax.swing.JFrame {
         });
 
         TblBaru.setText("Baru");
+        TblBaru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TblBaruActionPerformed(evt);
+            }
+        });
 
         TblEdit.setText("Edit");
+        TblEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TblEditActionPerformed(evt);
+            }
+        });
 
         TblHapus.setText("Hapus");
+        TblHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TblHapusActionPerformed(evt);
+            }
+        });
 
         TblBatal.setText("Batal");
+        TblBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TblBatalActionPerformed(evt);
+            }
+        });
 
         TblKeluar.setText("Keluar");
+        TblKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TblKeluarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,7 +348,7 @@ private void tombol_hidup(){
 private void koneksi_database() {
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        koneksi=DriverManager.getConnection("jdbc:mysql://localhost/mahasiswa","root","");
+        koneksi=DriverManager.getConnection("jdbc:mysql://localhost/pbouas","root","");
         pernyataan=koneksi.createStatement();
     } 
 	catch (Exception e) {
@@ -321,9 +363,9 @@ private void isi_table() {
     tbl.addColumn("Jenjang");
     tbl.addColumn("Jurusan");
     tbl.addColumn("No. Telepon");
-    tabel.setModel(tbl);
+    Tabel.setModel(tbl);
     try {
-        hasil=pernyataan.executeQuery("Select * from mahasiswa.tabelmahasiswa");
+        hasil=pernyataan.executeQuery("Select * from pbouas.data_mahasiswa");
         while(hasil.next()){
             tbl.addRow(new Object[] {
                 hasil.getString("Nim"),
@@ -332,20 +374,20 @@ private void isi_table() {
                 hasil.getString("Jurusan"),
                 hasil.getString("Telepon"),
             });
-            tabel.setModel(tbl);
+            Tabel.setModel(tbl);
         }
     } catch (Exception e) {}
 }
 
 private void update(){
     try{
-        pernyataan.executeUpdate("update tabelmahasiswa set "
+        pernyataan.executeUpdate("update data_mahasiswa set "
             +"nama='"+TxtNama.getText()+"',"
             +"telepon='"+TxtTelp.getText()+"',"
             +"jenjang='"+CboJenjang.getSelectedItem()+"',"
             +"jurusan='"+CboJurusan.getSelectedItem()+"'"
             +"where "
-            +"nim='"+TxtNim.getText()+"'"
+            +"nim='"+TxtID.getText()+"'"
         );
         JOptionPane.showMessageDialog (null, "Berhasil diupdate");
     }
@@ -357,7 +399,7 @@ private void update(){
 
 private void simpan() {
     try {
-        pernyataan.executeUpdate("insert into tabelmahasiswa values"
+        pernyataan.executeUpdate("insert into data_mahasiswa values"
                                + "("+" "+TxtID.getText()+"',"
                                + ""+""+TxtNama.getText()+"',"
                                + ""+""+CboJenjang.getSelectedItem()+","
@@ -374,8 +416,8 @@ private void simpan() {
 
 private void hapus () {
 	try {
-		pernyataan.executeUpdate(“delete from tabelmahasiswa where ”
-				       +”nim=’“+TxtNim.getText () +”’”) ;
+		pernyataan.executeUpdate("delete from data_mahasiswa where "
+                                            +"id='"+TxtID.getText()+"'");
 		JOptionPane.showMessageDialog (null, "Berhasil dihapus") ;
 		kosong();
 		isi_table() ;
@@ -385,71 +427,93 @@ private void hapus () {
 		}
 }
 
-private void TblSimpanActionPerformed (java.awt.event.ActionEvent evt) {
-	//TODO add your handling code here:
-	if(this.TblSimpan.getText()=="Simpan")
+
+    private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
+        // TODO add your handling code here:
+        if(this.TblSimpan.getText()=="Simpan")
 		simpan();
 	else{
 		update();
 		tidak_bisa_isi();
 		tombol_hidup();
-		TxtNim.setEnabled(true);
+		TxtID.setEnabled(true);
 		}
-}
+    }//GEN-LAST:event_TblSimpanActionPerformed
 
+    private void TblKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblKeluarActionPerformed
+        // TODO add your handling code here:
+         System.exit(0);
+    }//GEN-LAST:event_TblKeluarActionPerformed
 
-private void TblKeluarActionPerformed (java.awt.event.ActionEvent evt) {
-	//TODO add your handling code here:
-	 System.exit(0);
-}
-
-private void TblBatalActionPerformed (java.awt.event.ActionEvent evt) {
-	//TODO add your handling code here:
-	JOptionPane.showMessageDialog (null,"Batal");	
+    private void TblBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblBatalActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog (null,"Batal");	
 	kosong();
 	tidak_bisa_isi();
 	tombol_mati();
-  }
+    }//GEN-LAST:event_TblBatalActionPerformed
 
-
-private void TblEditActionPerformed (java.awt.event.ActionEvent evt) {
-//TODO add your handling code here:
-bisa_isi();
+    private void TblEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblEditActionPerformed
+        // TODO add your handling code here:
+        bisa_isi();
 tombol_mati();
 TxtNama.requestFocus();
 TblSimpan.setText("Update");
 TblSimpan.setEnabled(true);
-TxtNim.setEnabled(false);
-}
+TxtID.setEnabled(false);
+    }//GEN-LAST:event_TblEditActionPerformed
 
-private void TblHapusActionPerformed (java.awt.event.ActionEvent evt) {
-	//TODO add your handling code here:
-	int dialogButton = JOptionPane.YES_NO_OPTION;
-	int dialogButton = JOptionPane.showConfirmDialog (this, "Data akan dihapus?",
-		"Hapus Data",dialogButton);
-	if(dialogResult==0)
-	  hapus();
+    private void TblHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblHapusActionPerformed
+        // TODO add your handling code here:
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+	int dialogResult = JOptionPane.showConfirmDialog(this, "Data akan dihapus?",
+                "Hapus Dta",dialogButton);
+        if(dialogResult==0)
+            hapus();
 	else
-	  JOptionPane.showMessageDialog (null, "Batal menghapus");
-}
+        JOptionPane.showConfirmDialog(null, "Batal menghapus");
+    }//GEN-LAST:event_TblHapusActionPerformed
 
-
-private void TblBaruActionPerformed (java.awt.event.ActionEvent evt) {
-	//TODO add your handling code here:
-	kosong();
+    private void TblBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblBaruActionPerformed
+        // TODO add your handling code here:
+        kosong();
 	bisa_isi();
 	TblHapus.setEnabled(false);
-	TxtNim.requestFocus();
-	if(TxtNim.getText()=="")
+	TxtID.requestFocus();
+	if(TxtID.getText()=="")
 	  TblSimpan.setEnabled(false);
 	else{
 	  TblSimpan.setEnabled(true);
 	}
-}
+    }//GEN-LAST:event_TblBaruActionPerformed
 
-    private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
+    private void TxtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TblSimpanActionPerformed
+        try{
+            hasil=pernyataan.executeQuery("select * from data_mahasiswa where"+"id='"+TxtID.getText()+"'");
+        while (hasil.next()) {                                              
+            TxtNama.setText (hasil.getString("nama"));
+            CboJenjang.setSelectedItem(hasil.getString("jenjang"));
+            CboJurusan.setSelectedItem (hasil.getString("jurusan"));
+            TxtTelp.setText (hasil.getString("telepon"));
+            tombol_hidup();
+            }
+        }                           
+        catch (Exception e) {              
+            JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
+            }     
+    }//GEN-LAST:event_TxtIDActionPerformed
+
+    private void TabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelMouseClicked
+        // TODO add your handling code here:
+         int tableData=Tabel.getSelectedRow();
+        TxtID.setText (Tabel.getValueAt (tableData, 0).toString());
+        TxtNama.setText (Tabel.getValueAt (tableData, 1).toString());
+        CboJenjang.setSelectedItem(Tabel.getValueAt(tableData,2).toString());
+        CboJurusan.setSelectedItem(Tabel.getValueAt (tableData, 3).toString());
+        TxtTelp.setText (Tabel.getValueAt (tableData, 4).toString());
+        tombol_hidup();
+    }//GEN-LAST:event_TabelMouseClicked
 
     /**
      * @param args the command line arguments
