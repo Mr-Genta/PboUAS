@@ -355,13 +355,6 @@ private void update(){
     isi_table();
 }
 
-
-=======
-
-//---------------------------isi-dibawah-ini------------------------------------
-
-
-//----------------------------isi-diatas-ini------------------------------------
 private void simpan() {
     try {
         pernyataan.executeUpdate("insert into tabelmahasiswa values"
@@ -378,28 +371,82 @@ private void simpan() {
     tidak_bisa_isi();
     TblSimpan.setEnabled(false);
 }
-<<<<<<< HEAD
 
-private void simpan() {
-    try {
-        pernyataan.executeUpdate("insert into tabelmahasiswa values"
-                               + "("+" "+TxtID.getText()+"',"
-                               + ""+""+TxtNama.getText()+"',"
-                               + ""+""+CboJenjang.getSelectedItem()+","
-                               + ""+""+CboJurusan.getSelectedItem()+"',"
-                               + ""+" "+TxtTelp.getText()+"')");
-    } 
-    catch (Exception e) {
-        JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
-    }
-    isi_table();
-    tidak_bisa_isi();
-    TblSimpan.setEnabled(false);
+private void hapus () {
+	try {
+		pernyataan.executeUpdate(“delete from tabelmahasiswa where ”
+				       +”nim=’“+TxtNim.getText () +”’”) ;
+		JOptionPane.showMessageDialog (null, "Berhasil dihapus") ;
+		kosong();
+		isi_table() ;
+		}
+	catch (Exception e) {
+		JOptionPane.showMessageDialog (null, "Keterangan Error :"+e) ;
+		}
 }
->>>>>>> genta
 
-=======
->>>>>>> 049473a2b3e9158bf31dd75d4c7e4e1f61980aa3
+private void TblSimpanActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	if(this.TblSimpan.getText()=="Simpan")
+		simpan();
+	else{
+		update();
+		tidak_bisa_isi();
+		tombol_hidup();
+		TxtNim.setEnabled(true);
+		}
+}
+
+
+private void TblKeluarActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	 System.exit(0);
+}
+
+private void TblBatalActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	JOptionPane.showMessageDialog (null,"Batal");	
+	kosong();
+	tidak_bisa_isi();
+	tombol_mati();
+  }
+
+
+private void TblEditActionPerformed (java.awt.event.ActionEvent evt) {
+//TODO add your handling code here:
+bisa_isi();
+tombol_mati();
+TxtNama.requestFocus();
+TblSimpan.setText("Update");
+TblSimpan.setEnabled(true);
+TxtNim.setEnabled(false);
+}
+
+private void TblHapusActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	int dialogButton = JOptionPane.YES_NO_OPTION;
+	int dialogButton = JOptionPane.showConfirmDialog (this, "Data akan dihapus?",
+		"Hapus Data",dialogButton);
+	if(dialogResult==0)
+	  hapus();
+	else
+	  JOptionPane.showMessageDialog (null, "Batal menghapus");
+}
+
+
+private void TblBaruActionPerformed (java.awt.event.ActionEvent evt) {
+	//TODO add your handling code here:
+	kosong();
+	bisa_isi();
+	TblHapus.setEnabled(false);
+	TxtNim.requestFocus();
+	if(TxtNim.getText()=="")
+	  TblSimpan.setEnabled(false);
+	else{
+	  TblSimpan.setEnabled(true);
+	}
+}
+
     private void TblSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TblSimpanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TblSimpanActionPerformed
