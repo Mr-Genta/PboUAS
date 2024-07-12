@@ -3,16 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package tugasuas;
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 import java.sql.DriverManager;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
+
 
 /**
  *
@@ -368,7 +368,7 @@ private void isi_table() {
         hasil=pernyataan.executeQuery("Select * from pbouas.data_mahasiswa");
         while(hasil.next()){
             tbl.addRow(new Object[] {
-                hasil.getString("Nim"),
+                hasil.getString("ID"),
                 hasil.getString("Nama"),
                 hasil.getString("Jenjang"),
                 hasil.getString("Jurusan"),
@@ -387,7 +387,7 @@ private void update(){
             +"jenjang='"+CboJenjang.getSelectedItem()+"',"
             +"jurusan='"+CboJurusan.getSelectedItem()+"'"
             +"where "
-            +"nim='"+TxtID.getText()+"'"
+            +"id='"+TxtID.getText()+"'"
         );
         JOptionPane.showMessageDialog (null, "Berhasil diupdate");
     }
@@ -401,10 +401,10 @@ private void simpan() {
     try {
         pernyataan.executeUpdate("insert into data_mahasiswa values"
                                + "("+" "+TxtID.getText()+"',"
-                               + ""+""+TxtNama.getText()+"',"
-                               + ""+""+CboJenjang.getSelectedItem()+","
-                               + ""+""+CboJurusan.getSelectedItem()+"',"
-                               + ""+" "+TxtTelp.getText()+"')");
+                               + ""+"'"+TxtNama.getText()+"',"
+                               + ""+"'"+CboJenjang.getSelectedItem()+","
+                               + ""+"'"+CboJurusan.getSelectedItem()+"',"
+                               + ""+"'"+TxtTelp.getText()+"')");
     } 
     catch (Exception e) {
         JOptionPane.showMessageDialog (null, "Keterangan Error: "+e);
