@@ -152,11 +152,16 @@ public class FromMahasiswa extends javax.swing.JFrame {
 
         jLabel6.setText("Telepon");
 
+        TxtID.setText("ID");
         TxtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtIDActionPerformed(evt);
             }
         });
+
+        TxtNama.setText("Nama");
+
+        TxtTelp.setText("Telepon");
 
         CboJenjang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S1", "D3", "D4" }));
 
@@ -306,6 +311,7 @@ public class FromMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    private void kosong() {
+    TxtID.setText("");
     TxtNama.setText("");
     TxtID.setText("");
     CboJenjang.setSelectedItem(null);
@@ -323,6 +329,7 @@ private void bisa_isi () {
 
 
 private void tidak_bisa_isi (){
+    TxtID.setEnabled(false);
     TxtNama.setEnabled(false);
     TxtTelp.setEnabled(false);
     CboJenjang.setEnabled(false);
@@ -347,7 +354,7 @@ private void tombol_hidup(){
 }
 private void koneksi_database() {
     try {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         koneksi=DriverManager.getConnection("jdbc:mysql://localhost/pbouas","root","");
         pernyataan=koneksi.createStatement();
     } 

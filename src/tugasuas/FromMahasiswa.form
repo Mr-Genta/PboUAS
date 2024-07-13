@@ -284,13 +284,22 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtIDActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtNama">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nama"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtTelp">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Telepon"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="CboJenjang">
           <Properties>
