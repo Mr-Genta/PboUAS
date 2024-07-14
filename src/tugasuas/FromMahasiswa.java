@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package tugasuas;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -407,9 +408,9 @@ private void update(){
 private void simpan() {
     try {
         pernyataan.executeUpdate("insert into data_mahasiswa values"
-                               + "("+" "+TxtID.getText()+"',"
+                               + "("+"'"+TxtID.getText()+"',"
                                + ""+"'"+TxtNama.getText()+"',"
-                               + ""+"'"+CboJenjang.getSelectedItem()+","
+                               + ""+"'"+CboJenjang.getSelectedItem()+"',"
                                + ""+"'"+CboJurusan.getSelectedItem()+"',"
                                + ""+"'"+TxtTelp.getText()+"')");
     } 
